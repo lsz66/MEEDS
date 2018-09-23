@@ -20,7 +20,7 @@ public class QuickSort {
     }
 
     private static void quickSort(int[] a, int low, int high) {
-        if (low < high) {   //递归边界
+        if (low < high) {   //递归边界。
             int pos = partition(a, low, high);
             quickSort(a, low, pos - 1);
             quickSort(a, pos + 1, high);
