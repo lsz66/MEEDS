@@ -1,14 +1,14 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-
 //LinkList
 typedef int ElemType;
-typedef struct LNode {
+typedef struct LNode
+{
 	ElemType data;
 	LNode *next;
-	LNode(int val):data(a),next
-}LNode, *LinkList;
+	LNode(int val) : data(a), next
+} LNode, *LinkList;
 
 //初始化
 bool initList(LinkList &L)
@@ -23,46 +23,44 @@ bool initList(LinkList &L)
 //头插法创建链表，插入O(1)，总时间O(n)
 void headInsertCreate(LinkList &L)
 {
-	L = new LNode;
-	L->next = NULL;
+	initList(L);
 	LNode *s;
 	int x;
 	while (cin >> x)
 	{
 		s = new LNode;
-		s->data = x;		//结点赋值
-		s->next = L->next;	//插入到链表头
-		L->next = s;		
+		s->data = x;	   //结点赋值
+		s->next = L->next; //新结点的next指向原第一个结点
+		L->next = s;	   //插入到链表头
 	}
 }
 
 //尾插法创建链表，插入O(1)，总时间O(n)
 void tailInsertCreate(LinkList &L)
 {
-	L = new LNode;
-	L->next = NULL;
-	LNode *r = L;		//尾指针，当前为空表所以指向头指针
+	initList(L);
+	LNode *r = L; //尾指针，当前为空表所以指向头指针
 	int x;
 	while (cin >> x)
 	{
-		LNode *s = new LNode;	//临时结点
-		s->data = x;			//结点赋值
-		r->next = s;			//尾指针的下一个结点指向临时结点，即插入
-		r = s;					//临时结点为尾结点
+		LNode *s = new LNode; //新结点
+		s->data = x;		  //结点赋值
+		r->next = s;		  //尾指针的下一个结点指向新结点，即插入
+		r = s;				  //新结点为尾结点
 	}
-	r->next = NULL;	//漏掉这个不行
+	r->next = NULL; //漏掉这个不行
 }
 
 //按位置查找节点，返回结点，O(n)
-LNode* getElem(LinkList L, int pos)
+LNode *getElem(LinkList L, int pos)
 {
 	LNode *p = L->next;
 	if (pos < 0)
-		return NULL;	//位置不合法
+		return NULL; //位置不合法
 	if (pos == 0)
-		return L;		//0即头结点
-	int i = 1;			//从第一个结点即头结点之后找
-	while (p&&i < pos)	//i==pos即结束，就是要找的那个结点
+		return L;		 //0即头结点
+	int i = 1;			 //从第一个结点即头结点之后找
+	while (p && i < pos) //i==pos即结束，就是要找的那个结点
 	{
 		p = p->next;
 		i++;
@@ -71,19 +69,12 @@ LNode* getElem(LinkList L, int pos)
 }
 
 //按值查找，返回值，O(n)
-bool getElem(LinkList L, int i, ElemType &e)
+LNode locateElem(LinkList L, ElemType e)
 {
-	LinkList p = L->next;
-	int j = 1;
-	while (p && j < i)	//定位到第i个节点
-	{
+	LNode *p = L->next;
+	while (p != NULL && p->data != e)
 		p = p->next;
-		j++;
-	}
-	if (!p || j > i)	//i非法
-		return false;
-	e = p->data;
-	return true;
+	return p;
 }
 
 /**
@@ -108,7 +99,7 @@ bool listInsert(LinkList &L, int i, ElemType e)
 		if (!p || j > i - 1)	//i非法
 			return false;
 	*/
-	LNode* s = new LNode;
+	LNode *s = new LNode;
 	s->next = p->next;
 	s->data = e;
 	p->next = s;
@@ -133,9 +124,7 @@ bool listDelete(LinkList &L, int pos)
 			return false;
 	*/
 	LNode *s = p->next;
-	if (!s)
-		return false;
-	p->next = s -> next;
+	p->next = s->next;
 	delete s;
 	return true;
 }
@@ -166,7 +155,9 @@ void printList(LinkList L)
 		p = p->next;
 		len++;
 	}
-	cout << endl << "表长为：" << len << endl;;
+	cout << endl
+		 << "表长为：" << len << endl;
+	;
 }
 
 int main()

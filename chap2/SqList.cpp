@@ -4,10 +4,11 @@ using namespace std;
 //SqList
 const int MAXSIZE = 100;
 typedef int ElemType;
-typedef struct {
-	ElemType * elem;
+typedef struct
+{
+	ElemType *elem;
 	int size;
-}SqList;
+} SqList;
 
 bool InitList(SqList &L)
 {
@@ -20,7 +21,7 @@ bool InitList(SqList &L)
 
 bool GetElem(SqList L, int i, ElemType &e)
 {
-	if (i<1 || i>L.size)
+	if (i < 1 || i > L.size)
 		return false;
 	e = L.elem[i - 1];
 	return true;
@@ -36,7 +37,7 @@ int LocateElem(SqList L, ElemType e)
 
 bool ListInsert(SqList &L, int i, ElemType e)
 {
-	if (i<1 || i>L.size + 1)
+	if (i < 1 || i > L.size + 1)
 		return false;
 	for (int j = L.size; j >= i; j--)
 		L.elem[j] = L.elem[j - 1];
@@ -47,7 +48,7 @@ bool ListInsert(SqList &L, int i, ElemType e)
 
 bool ListDelete(SqList &L, int i)
 {
-	if (i<1 || i>L.size)
+	if (i < 1 || i > L.size)
 		return false;
 	for (int j = i - 1; j < L.size - 1; j++)
 		L.elem[j] = L.elem[j + 1];
