@@ -2,10 +2,11 @@
 using namespace std;
 
 typedef char ElemType;
-typedef struct BiTNode {
+typedef struct BiTNode
+{
 	ElemType data;
 	BiTNode *lchild, *rchild;
-}BiTNode, *BiTree;
+} BiTNode, *BiTree;
 
 void Visit(BiTree T)
 {
@@ -54,7 +55,7 @@ void PostOrder(BiTree T)
 	{
 		PreOrder(T->lchild);
 		PreOrder(T->rchild);
-		Visit(T); 
+		Visit(T);
 	}
 }
 
@@ -65,17 +66,17 @@ void PreOrderTraverse(BiTree T)
 	BiTree p = T;
 	while (p || !s.empty())
 	{
-		if (p)		//将左子结点入栈
+		if (p) //将左子结点入栈
 		{
-			Visit(p);		//访问结点
-			s.push(p);		//入栈保存
-			p = p->lchild;	//访问子结点
+			Visit(p);	  //访问结点
+			s.push(p);	 //入栈保存
+			p = p->lchild; //访问子结点
 		}
-		else	//遇到没有左子结点的结点
+		else //遇到没有左子结点的结点
 		{
 			p = s.top();
-			s.pop();	//最近访问的结点出栈
-			p = p->rchild;	//开始访问其右子结点
+			s.pop();	   //最近访问的结点出栈
+			p = p->rchild; //开始访问其右子结点
 		}
 	}
 }
@@ -86,17 +87,17 @@ void InOrderTraverse(BiTree T)
 	BiTree p = T;
 	while (p || !s.empty())
 	{
-		if (p)		//将左子结点入栈
+		if (p) //将左子结点入栈
 		{
-			s.push(p);		//入栈保存
-			p = p->lchild;	//访问子结点
+			s.push(p);	 //入栈保存
+			p = p->lchild; //访问子结点
 		}
-		else	//遇到没有左子结点的结点
+		else //遇到没有左子结点的结点
 		{
 			p = s.top();
-			s.pop();	//最近访问的结点出栈
-			Visit(p);		//访问结点
-			p = p->rchild;	//开始访问其右子结点
+			s.pop();	   //最近访问的结点出栈
+			Visit(p);	  //访问结点
+			p = p->rchild; //开始访问其右子结点
 		}
 	}
 }
@@ -107,17 +108,17 @@ void PostOrderTraverse(BiTree T)
 	BiTree p = T, r = NULL;
 	while (p || !s.empty())
 	{
-		if (p)		//将左子结点入栈
+		if (p) //将左子结点入栈
 		{
-			s.push(p);		//入栈保存
-			p = p->lchild;	//访问子结点
+			s.push(p);	 //入栈保存
+			p = p->lchild; //访问子结点
 		}
-		else	//遇到没有左子结点的结点
+		else //遇到没有左子结点的结点
 		{
 			p = s.top();
-			if (p->rchild&&p->rchild != r)	//右子树还没访问
-				p = p->rchild;	//访问右子树
-			else    //右子树已访问
+			if (p->rchild && p->rchild != r) //右子树还没访问
+				p = p->rchild;				 //访问右子树
+			else							 //右子树已访问
 			{
 				s.pop();
 				cout << p->data << ' ';
