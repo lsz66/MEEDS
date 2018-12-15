@@ -58,7 +58,7 @@ void CreateBST(BSTree &T, vector<KeyType> v)
 
 bool DeleteBST(BSTree &T, KeyType key)
 {
-	BSTree p = T, f = NULL; //p:工作指针，f:拟删除节点的父节点
+	BSTree p = T; //p:工作指针
 	while (p)
 	{
 		if (p->data == key)
