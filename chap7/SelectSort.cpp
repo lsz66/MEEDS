@@ -18,7 +18,7 @@ void SelectSort(vector<int> &v)
 
 void AdjustDown(int a[], int k, int len)
 {
-	//k:父, i:子, 0:暂存空间
+	//k:父(待调整), i:子, 0:暂存空间
 	a[0] = a[k];
 	for (int i = 2 * k; i <= len; i *= 2) //检查当前节点的儿子
 	{
@@ -49,7 +49,7 @@ void HeapSort(int a[], int len)
 	{
 		swap(a[i], a[1]);
 		cout << a[i] << ' ';
-		AdjustDown(a, i - 1, len);
+		AdjustDown(a, 1, i - 1);
 	}
 }
 
