@@ -15,9 +15,9 @@ void BubbleSort(vector<int> &v)
 				swap(v[j - 1], v[j]);
 				isChange = true;
 			}
-			if (!isChange)
-				return;
 		}
+		if (!isChange)
+				return;
 	}
 }
 
